@@ -6,6 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\Build - Debug - Any CPU.bat = ..\Build - Debug - Any CPU.bat
 		..\Build - Release - Any CPU.bat = ..\Build - Release - Any CPU.bat
 		..\LICENSE = ..\LICENSE
+		..\NAnt.xml = ..\NAnt.xml
 		..\Package Source.bat = ..\Package Source.bat
 		..\README = ..\README
 		..\ReSharper 5.1 Code Styles.xml = ..\ReSharper 5.1 Code Styles.xml

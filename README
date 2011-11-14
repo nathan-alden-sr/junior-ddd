@@ -1,12 +1,10 @@
-PLEASE READ THIS DOCUMENT IN ITS ENTIRETY BEFORE CONTRIBUTING TO THE JUNIORMAP PROJECT!
+PLEASE READ THIS DOCUMENT IN ITS ENTIRETY BEFORE CONTRIBUTING TO THE JUNIORDDD PROJECT!
 Note that "I" refers to the creator of Junior, Nathan Alden, Sr.
 
 
-Purpose of JuniorMap
+Purpose of JuniorDDD
 -----------------------
-JuniorMap is a framework for mapping between two types and adapting one type to another.
-
-The original code was designed and written by Carlos Ribas. I have normalized it to more closely follow Junior's coding styles, where possible.
+JuniorDDD is a framework for domain events, domain model relationships and validation.
 
 
 How to Contribute

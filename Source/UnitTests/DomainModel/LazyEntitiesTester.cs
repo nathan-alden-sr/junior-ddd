@@ -28,10 +28,10 @@ namespace Junior.Ddd.UnitTests.DomainModel
 			public void Must_initialize_using_entities_supplied_in_constructor()
 			{
 				IEnumerable<object> entities = new[]
-				                               	{
-				                               		new object(),
-				                               		new object()
-				                               	};
+					{
+						new object(),
+						new object()
+					};
 				LazyEntities<object> systemUnderTest = entities.Lazy();
 
 				Assert.That(systemUnderTest.Value, Is.EquivalentTo(entities));
@@ -41,10 +41,10 @@ namespace Junior.Ddd.UnitTests.DomainModel
 			public void Must_initialize_using_func_supplied_in_constructor()
 			{
 				var entities = new[]
-				               	{
-				               		new object(),
-				               		new object()
-				               	};
+					{
+						new object(),
+						new object()
+					};
 				var systemUnderTest = new LazyEntities<object>(() => entities);
 
 				Assert.That(systemUnderTest.Value, Is.SameAs(entities));

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>JuniorDDD</id>
+		<version>$version$</version>
+		<title>JuniorDDD</title>
+		<authors>Nathan Alden Sr.</authors>
+		<description>JuniorDDD is a framework for domain events, domain model relationships and validation.</description>
+		<releaseNotes></releaseNotes>
+		<projectUrl>https://github.com/NathanAlden/JuniorDDD</projectUrl>
+		<iconUrl>https://docs.google.com/uc?export=download&amp;id=0B8a4O6RATfaXQ2YxekpxbXRfUjQ</iconUrl>
+		<dependencies>
+			<dependency id="JuniorCommon" version="1.0.6"/>
+		</dependencies>
+		<references>
+			<reference file="Junior.Ddd.DomainEvents.dll"/>
+			<reference file="Junior.Ddd.DomainModel.dll"/>
+			<reference file="Junior.Ddd.Validation.dll"/>
+		</references>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="net40"/>
+			<frameworkAssembly assemblyName="System.Xml" targetFramework="net40"/>
+			<frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="net40"/>
+		</frameworkAssemblies>
+		<tags>Junior</tags>
+	</metadata>
+	<files>
+		<file src="NuGet Staging\LICENSE"/>
+		<file src="NuGet Staging\README"/>
+		<file src="NuGet Staging\bin\Junior.Ddd.*" target="lib\net40"/>
+	</files>
+</package>

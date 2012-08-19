@@ -42,7 +42,7 @@ namespace Junior.Ddd.Validation
 
 			var validationErrors = new List<TValidationError>();
 
-			foreach (var rule in rules)
+			foreach (IRule<TValidationError> rule in rules)
 			{
 				validationErrors.AddRange(rule.Validate());
 			}
@@ -66,7 +66,7 @@ namespace Junior.Ddd.Validation
 
 			var validationErrors = new List<TValidationError>();
 
-			foreach (var rule in rules)
+			foreach (IRule<TValidationError> rule in rules)
 			{
 				validationErrors.AddRange(rule.Validate());
 			}

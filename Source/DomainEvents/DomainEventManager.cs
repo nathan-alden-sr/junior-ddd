@@ -104,7 +104,7 @@ namespace Junior.Ddd.DomainEvents
 		{
 			if (DomainEventHandlerFinder != null)
 			{
-				foreach (var domainEventHandler in DomainEventHandlerFinder.Find<IDomainEventHandler<TDomainEvent>, TDomainEvent>())
+				foreach (IDomainEventHandler<TDomainEvent> domainEventHandler in DomainEventHandlerFinder.Find<IDomainEventHandler<TDomainEvent>, TDomainEvent>())
 				{
 					domainEventHandler.Handle(domainEvent);
 				}
@@ -125,7 +125,7 @@ namespace Junior.Ddd.DomainEvents
 					.OfType<Action<TDomainEvent>>()
 					.ToArray();
 			}
-			foreach (var @delegate in delegates)
+			foreach (Action<TDomainEvent> @delegate in delegates)
 			{
 				@delegate(domainEvent);
 			}
@@ -136,7 +136,7 @@ namespace Junior.Ddd.DomainEvents
 		{
 			IEnumerable<Action<TDomainEvent>> delegates = _threadLocalDelegates.Value.OfType<Action<TDomainEvent>>();
 
-			foreach (var @delegate in delegates)
+			foreach (Action<TDomainEvent> @delegate in delegates)
 			{
 				@delegate(domainEvent);
 			}

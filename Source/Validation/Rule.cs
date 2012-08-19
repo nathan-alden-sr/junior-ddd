@@ -55,8 +55,8 @@ namespace Junior.Ddd.Validation
 			TValidationError[] dependencyValidationErrors = ValidateDependencies().ToArray();
 
 			return dependencyValidationErrors.Intersect(_stopValidatingOn).Any()
-			       	? dependencyValidationErrors
-			       	: dependencyValidationErrors.Union(OnValidate()).Distinct();
+				       ? dependencyValidationErrors
+				       : dependencyValidationErrors.Union(OnValidate()).Distinct();
 		}
 
 		/// <summary>

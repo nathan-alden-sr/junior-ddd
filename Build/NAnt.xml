@@ -3,6 +3,10 @@
 	<!-- NAnt -->
 	<property name="nant.settings.currentframework" value="net-4.0"/>
 
+	<property name="SubProject" value=""/>
+	<property name="AssemblyInfoPath" value=""/>
+	<property name="NuGetVersion" value=""/>
+
 	<!-- Build configuration -->
 	<property name="Platform" value="Any CPU" overwrite="false"/>
 	<property name="BuildConfiguration" value="Release" overwrite="false"/>
@@ -19,9 +23,8 @@
 	<!-- Paths -->
 	<property name="NUnitConsolePath" value="${path::combine(path::combine(path::combine(BuildDirectory, 'NUnit-2.6.1'), 'bin'), 'nunit-console.exe')}"/>
 	<property name="NuGetPath" value="${path::combine(path::combine(BuildDirectory, 'NuGet-2.0'), 'NuGet.exe')}"/>
-	<property name="NuGetNuspecPath" value="${path::combine(BuildDirectory, 'NuGet.nuspec')}"/>
 	<property name="SolutionPath" value="${path::combine(SourceDirectory, project::get-name() + '.sln')}"/>
-	<property name="AssemblyInfoPath" value="${path::combine(SourceDirectory, 'CommonAssemblyInfo.cs')}"/>
+	
 
 	<!-- Build -->
 	<target name="Build">
@@ -30,9 +33,12 @@
 		<call target="RunUnitTests"/>
 		<if test="${BuildConfiguration == 'Release'}">
 			<call target="RecreateNuGetResultsDirectory"/>
-			<call target="StageNuGetFiles"/>
-			<call target="CreateNuGetPackage"/>
-			<call target="DeleteStagedFiles"/>
+			<foreach item="String" in="DomainEvents,DomainModel,Validation" delim="," property="SubProject">
+				<property name="AssemblyInfoPath" value="${path::combine(path::combine(SourceDirectory, SubProject), 'Properties\AssemblyInfo.cs')}"/>
+				<call target="StageNuGetFiles"/>
+				<call target="CreateNuGetPackage"/>
+				<call target="DeleteStagedFiles"/>
+			</foreach>
 		</if>
 	</target>
 
@@ -84,21 +90,27 @@
 				<include name="README.md"/>
 			</fileset>
 		</copy>
-		<copy todir="${NuGetStagingBinDirectory}">
-			<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainEvents\bin', BuildConfiguration))}">
-				<include name="Junior.Ddd.*"/>
-			</fileset>
-		</copy>
-		<copy todir="${NuGetStagingBinDirectory}">
-			<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainModel\bin', BuildConfiguration))}">
-				<include name="Junior.Ddd.*"/>
-			</fileset>
-		</copy>
-		<copy todir="${NuGetStagingBinDirectory}">
-			<fileset basedir="${path::combine(SourceDirectory, path::combine('Validation\bin', BuildConfiguration))}">
-				<include name="Junior.Ddd.*"/>
-			</fileset>
-		</copy>
+		<if test="${SubProject == 'DomainEvents'}">
+			<copy todir="${NuGetStagingBinDirectory}">
+				<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainEvents\bin', BuildConfiguration))}">
+					<include name="Junior.Ddd.DomainEvents.*"/>
+				</fileset>
+			</copy>
+		</if>
+		<if test="${SubProject == 'DomainModel'}">
+			<copy todir="${NuGetStagingBinDirectory}">
+				<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainModel\bin', BuildConfiguration))}">
+					<include name="Junior.Ddd.DomainModel.*"/>
+				</fileset>
+			</copy>
+		</if>
+		<if test="${SubProject == 'Validation'}">
+			<copy todir="${NuGetStagingBinDirectory}">
+				<fileset basedir="${path::combine(SourceDirectory, path::combine('Validation\bin', BuildConfiguration))}">
+					<include name="Junior.Ddd.Validation.*"/>
+				</fileset>
+			</copy>
+		</if>
 		<script language="C#">
 			<imports>
 				<import namespace="System.Linq"/>
@@ -130,7 +142,7 @@
 			workingdir="."
 			verbose="true">
 			<arg value="pack"/>
-			<arg value="NuGet.nuspec"/>
+			<arg value="NuGet-${SubProject}.nuspec"/>
 			<arg value="-Version"/>
 			<arg value="${NuGetVersion}"/>
 			<arg value="-OutputDirectory"/>

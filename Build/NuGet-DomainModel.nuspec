@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
-		<id>JuniorDDD</id>
+		<id>JuniorDDD.DomainModel</id>
 		<version>$version$</version>
-		<title>JuniorDDD</title>
+		<title>JuniorDDD - Domain Model</title>
 		<authors>Nathan Alden Sr.</authors>
-		<description>JuniorDDD is a framework for domain events, domain model relationships and validation.</description>
+		<description>JuniorDDD facilitates the creation and validation of entities. This package provides lazy-loading capabilities for entities.</description>
 		<releaseNotes></releaseNotes>
 		<projectUrl>https://github.com/NathanAlden/JuniorDDD</projectUrl>
 		<iconUrl>https://docs.google.com/uc?export=download&amp;id=0B8a4O6RATfaXQ2YxekpxbXRfUjQ</iconUrl>
@@ -13,15 +13,13 @@
 			<dependency id="JuniorCommon" version="2.0.1"/>
 		</dependencies>
 		<references>
-			<reference file="Junior.Ddd.DomainEvents.dll"/>
 			<reference file="Junior.Ddd.DomainModel.dll"/>
-			<reference file="Junior.Ddd.Validation.dll"/>
 		</references>
 		<tags>Junior</tags>
 	</metadata>
 	<files>
 		<file src="NuGet Staging\LICENSE"/>
 		<file src="NuGet Staging\README.md"/>
-		<file src="NuGet Staging\bin\Junior.Ddd.*" target="lib\net40"/>
+		<file src="NuGet Staging\bin\Junior.Ddd.DomainModel.*" target="lib\net40"/>
 	</files>
 </package>

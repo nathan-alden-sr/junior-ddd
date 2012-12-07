@@ -50,9 +50,6 @@
     <AssemblyOriginatorKeyFile>..\JuniorDDD.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="EntityExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazyEntity.cs" />

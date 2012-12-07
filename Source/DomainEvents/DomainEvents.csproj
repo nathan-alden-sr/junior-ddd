@@ -50,9 +50,6 @@
     <AssemblyOriginatorKeyFile>..\JuniorDDD.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="DomainEventManager.cs" />
     <Compile Include="IDomainEvent.cs" />
     <Compile Include="IDomainEventHandler.cs" />

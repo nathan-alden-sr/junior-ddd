@@ -45,9 +45,6 @@
     <AssemblyOriginatorKeyFile>..\JuniorDDD.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="DomainEvents\DomainEventManagerTester.cs" />
     <Compile Include="DomainModel\LazyEntitiesTester.cs" />
     <Compile Include="DomainModel\LazyEntityTester.cs" />

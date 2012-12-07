@@ -10,23 +10,18 @@
 		<projectUrl>https://github.com/NathanAlden/JuniorDDD</projectUrl>
 		<iconUrl>https://docs.google.com/uc?export=download&amp;id=0B8a4O6RATfaXQ2YxekpxbXRfUjQ</iconUrl>
 		<dependencies>
-			<dependency id="JuniorCommon" version="1.0.6"/>
+			<dependency id="JuniorCommon" version="2.0.1"/>
 		</dependencies>
 		<references>
 			<reference file="Junior.Ddd.DomainEvents.dll"/>
 			<reference file="Junior.Ddd.DomainModel.dll"/>
 			<reference file="Junior.Ddd.Validation.dll"/>
 		</references>
-		<frameworkAssemblies>
-			<frameworkAssembly assemblyName="System" targetFramework="net40"/>
-			<frameworkAssembly assemblyName="System.Xml" targetFramework="net40"/>
-			<frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="net40"/>
-		</frameworkAssemblies>
 		<tags>Junior</tags>
 	</metadata>
 	<files>
 		<file src="NuGet Staging\LICENSE"/>
-		<file src="NuGet Staging\README"/>
+		<file src="NuGet Staging\README.md"/>
 		<file src="NuGet Staging\bin\Junior.Ddd.*" target="lib\net40"/>
 	</files>
 </package>

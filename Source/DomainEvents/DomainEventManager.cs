@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
+using Junior.Common;
+
 namespace Junior.Ddd.DomainEvents
 {
 	/// <summary>
@@ -43,6 +45,8 @@ namespace Junior.Ddd.DomainEvents
 		public void RegisterGlobalDelegate<TDomainEvent>(Action<TDomainEvent> @delegate)
 			where TDomainEvent : IDomainEvent
 		{
+			@delegate.ThrowIfNull("delegate");
+
 			lock (_lockObject)
 			{
 				_globalDelegates.Add(@delegate);
@@ -57,6 +61,8 @@ namespace Junior.Ddd.DomainEvents
 		public void RegisterThreadLocalDelegate<TDomainEvent>(Action<TDomainEvent> @delegate)
 			where TDomainEvent : IDomainEvent
 		{
+			@delegate.ThrowIfNull("delegate");
+
 			_threadLocalDelegates.Value.Add(@delegate);
 		}
 
@@ -102,6 +108,8 @@ namespace Junior.Ddd.DomainEvents
 		public void Raise<TDomainEvent>(TDomainEvent domainEvent)
 			where TDomainEvent : IDomainEvent
 		{
+			domainEvent.ThrowIfNull("domainEvent");
+
 			if (DomainEventHandlerFinder != null)
 			{
 				foreach (IDomainEventHandler<TDomainEvent> domainEventHandler in DomainEventHandlerFinder.Find<IDomainEventHandler<TDomainEvent>, TDomainEvent>())
@@ -117,6 +125,8 @@ namespace Junior.Ddd.DomainEvents
 		private void InvokeGlobalDelegates<TDomainEvent>(TDomainEvent domainEvent)
 			where TDomainEvent : IDomainEvent
 		{
+			domainEvent.ThrowIfNull("domainEvent");
+
 			Action<TDomainEvent>[] delegates;
 
 			lock (_lockObject)
@@ -134,6 +144,8 @@ namespace Junior.Ddd.DomainEvents
 		private void InvokeThreadLocalDelegates<TDomainEvent>(TDomainEvent domainEvent)
 			where TDomainEvent : IDomainEvent
 		{
+			domainEvent.ThrowIfNull("domainEvent");
+
 			IEnumerable<Action<TDomainEvent>> delegates = _threadLocalDelegates.Value.OfType<Action<TDomainEvent>>();
 
 			foreach (Action<TDomainEvent> @delegate in delegates)

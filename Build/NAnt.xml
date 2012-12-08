@@ -21,10 +21,9 @@
 	<property name="NUnitResultsDirectory" value="${path::combine(BuildDirectory, 'NUnit Results')}"/>
 
 	<!-- Paths -->
-	<property name="NUnitConsolePath" value="${path::combine(path::combine(path::combine(BuildDirectory, 'NUnit-2.6.1'), 'bin'), 'nunit-console.exe')}"/>
-	<property name="NuGetPath" value="${path::combine(path::combine(BuildDirectory, 'NuGet-2.0'), 'NuGet.exe')}"/>
+	<property name="NUnitConsolePath" value="${path::combine(BuildDirectory, 'NUnit-2.6.2\bin\nunit-console.exe')}"/>
+	<property name="NuGetPath" value="${path::combine(BuildDirectory, 'NuGet-2.0\NuGet.exe')}"/>
 	<property name="SolutionPath" value="${path::combine(SourceDirectory, project::get-name() + '.sln')}"/>
-	
 
 	<!-- Build -->
 	<target name="Build">
@@ -34,7 +33,7 @@
 		<if test="${BuildConfiguration == 'Release'}">
 			<call target="RecreateNuGetResultsDirectory"/>
 			<foreach item="String" in="DomainEvents,DomainModel,Validation" delim="," property="SubProject">
-				<property name="AssemblyInfoPath" value="${path::combine(path::combine(SourceDirectory, SubProject), 'Properties\AssemblyInfo.cs')}"/>
+				<property name="AssemblyInfoPath" value="${path::combine(SourceDirectory, SubProject + '\Properties\AssemblyInfo.cs')}"/>
 				<call target="StageNuGetFiles"/>
 				<call target="CreateNuGetPackage"/>
 				<call target="DeleteStagedFiles"/>
@@ -61,7 +60,7 @@
 		<mkdir dir="${NUnitResultsDirectory}"/>
 	</target>
 	<target name="RunUnitTests">
-		<property name="UnitTestAssemblyPath" value="${path::combine(path::combine(SourceDirectory, path::combine('UnitTests', path::combine('bin', BuildConfiguration))), 'Junior.Ddd.UnitTests.dll')}"/>
+		<property name="UnitTestAssemblyPath" value="${path::combine(SourceDirectory, 'UnitTests\bin\' + BuildConfiguration + '\Junior.Ddd.UnitTests.dll')}"/>
 		<call target="ExecuteNUnit"/>
 	</target>
 	<target name="ExecuteNUnit">
@@ -72,7 +71,6 @@
 			<arg value="/nothread"/>
 			<arg value="/domain=Multiple"/>
 			<arg value="/process=Single"/>
-			<arg value="/framework=${nant.settings.currentframework}"/>
 		</exec>
 	</target>
 
@@ -92,21 +90,21 @@
 		</copy>
 		<if test="${SubProject == 'DomainEvents'}">
 			<copy todir="${NuGetStagingBinDirectory}">
-				<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainEvents\bin', BuildConfiguration))}">
+				<fileset basedir="${path::combine(SourceDirectory, 'DomainEvents\bin\' + BuildConfiguration)}">
 					<include name="Junior.Ddd.DomainEvents.*"/>
 				</fileset>
 			</copy>
 		</if>
 		<if test="${SubProject == 'DomainModel'}">
 			<copy todir="${NuGetStagingBinDirectory}">
-				<fileset basedir="${path::combine(SourceDirectory, path::combine('DomainModel\bin', BuildConfiguration))}">
+				<fileset basedir="${path::combine(SourceDirectory, 'DomainModel\bin\' + BuildConfiguration)}">
 					<include name="Junior.Ddd.DomainModel.*"/>
 				</fileset>
 			</copy>
 		</if>
 		<if test="${SubProject == 'Validation'}">
 			<copy todir="${NuGetStagingBinDirectory}">
-				<fileset basedir="${path::combine(SourceDirectory, path::combine('Validation\bin', BuildConfiguration))}">
+				<fileset basedir="${path::combine(SourceDirectory, 'Validation\bin\' + BuildConfiguration)}">
 					<include name="Junior.Ddd.Validation.*"/>
 				</fileset>
 			</copy>

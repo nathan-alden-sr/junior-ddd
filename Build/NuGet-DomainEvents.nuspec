@@ -10,7 +10,7 @@
 		<projectUrl>https://github.com/NathanAlden/JuniorDDD</projectUrl>
 		<iconUrl>https://docs.google.com/uc?export=download&amp;id=0B8a4O6RATfaXQ2YxekpxbXRfUjQ</iconUrl>
 		<dependencies>
-			<dependency id="JuniorCommon" version="2.0.1"/>
+			<dependency id="JuniorCommon" version="3.0.0"/>
 		</dependencies>
 		<references>
 			<reference file="Junior.Ddd.DomainEvents.dll"/>
